@@ -1,0 +1,14 @@
+import nltk
+from nltk.corpus import names
+
+nt = [
+    (fid.split('.')[0], name[-1])
+    for fid in names.fileids()
+    for name in names.words(fid)
+]
+
+cfd = nltk.ConditionalFreqDist(nt)
+print(cfd['female']['a'])
+print(cfd['male']['a'])
+cfd.tabulate(samples=['a', 'e'])
+cfd.plot()
